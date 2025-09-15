@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 
 def add_numbers(a: int, b: int) -> int:
     """Return the sum of two integers.
@@ -13,7 +15,7 @@ def add_numbers(a: int, b: int) -> int:
     Returns:
         Sum of a and b.
     """
-    raise NotImplementedError
+    return a + b
 
 
 def factorial(n: int) -> int:
@@ -28,7 +30,9 @@ def factorial(n: int) -> int:
     Raises:
         ValueError: if n is negative
     """
-    raise NotImplementedError
+    if n < 0:
+        raise ValueError()
+    return math.factorial(n)
 
 
 def is_prime(n: int) -> bool:
@@ -43,4 +47,9 @@ def is_prime(n: int) -> bool:
     Returns:
         True if n is prime; otherwise False.
     """
-    raise NotImplementedError
+    if n <= 1:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
