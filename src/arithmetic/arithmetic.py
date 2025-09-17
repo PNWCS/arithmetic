@@ -13,7 +13,7 @@ def add_numbers(a: int, b: int) -> int:
     Returns:
         Sum of a and b.
     """
-    raise NotImplementedError
+    return a + b
 
 
 def factorial(n: int) -> int:
@@ -28,7 +28,12 @@ def factorial(n: int) -> int:
     Raises:
         ValueError: if n is negative
     """
-    raise NotImplementedError
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers")
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
 
 
 def is_prime(n: int) -> bool:
@@ -43,4 +48,10 @@ def is_prime(n: int) -> bool:
     Returns:
         True if n is prime; otherwise False.
     """
-    raise NotImplementedError
+    if n <= 1:
+        return False
+    else:
+        for i in range(2, n):
+            if n % i == 0:
+                return False
+        return True
