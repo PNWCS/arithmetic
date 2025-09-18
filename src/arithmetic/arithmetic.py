@@ -3,6 +3,14 @@
 from __future__ import annotations
 
 
+def factor(n):
+    """Calculate the factor."""
+    if n == 0:
+        return 1
+    else:
+        return n * factor(n - 1)
+
+
 def add_numbers(a: int, b: int) -> int:
     """Return the sum of two integers.
 
@@ -13,7 +21,7 @@ def add_numbers(a: int, b: int) -> int:
     Returns:
         Sum of a and b.
     """
-    raise NotImplementedError
+    return a + b
 
 
 def factorial(n: int) -> int:
@@ -28,7 +36,9 @@ def factorial(n: int) -> int:
     Raises:
         ValueError: if n is negative
     """
-    raise NotImplementedError
+    if n < 0:
+        raise ValueError("N cannot be negative.")
+    return factor(n)
 
 
 def is_prime(n: int) -> bool:
@@ -43,4 +53,17 @@ def is_prime(n: int) -> bool:
     Returns:
         True if n is prime; otherwise False.
     """
-    raise NotImplementedError
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+
+    # Checking divisibility from 5 up to sqrt(n)
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
