@@ -1,46 +1,63 @@
-"""arithmetic functions."""
+"""Arithmetic module with basic math functions.
 
-from __future__ import annotations
+This module provides implementations for simple arithmetic operations
+and number theory functions such as addition, factorial, and prime check.
+"""
 
 
 def add_numbers(a: int, b: int) -> int:
     """Return the sum of two integers.
 
     Args:
-        a: first integer
-        b: second integer
+        a (int): The first number.
+        b (int): The second number.
 
     Returns:
-        Sum of a and b.
+        int: The sum of a and b.
     """
-    raise NotImplementedError
+    return a + b
 
 
 def factorial(n: int) -> int:
-    """Compute the factorial of n.
+    """Calculate the factorial of a non-negative integer.
 
     Args:
-        n: non-negative integer
+        n (int): A non-negative integer.
 
     Returns:
-        n! as int
+        int: The factorial of n.
 
     Raises:
-        ValueError: if n is negative
+        ValueError: If n is negative.
     """
-    raise NotImplementedError
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers")
+    if n == 0 or n == 1:
+        return 1
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
 
 
 def is_prime(n: int) -> bool:
-    """Check whether n is a prime number.
-
-    A prime number is an integer greater than 1 that has no positive
-    divisors other than 1 and itself.
+    """Determine if a number is prime.
 
     Args:
-        n: integer to test
+        n (int): The number to check.
 
     Returns:
-        True if n is prime; otherwise False.
+        bool: True if n is prime, False otherwise.
     """
-    raise NotImplementedError
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
